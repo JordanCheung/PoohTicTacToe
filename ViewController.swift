@@ -27,12 +27,12 @@ class ViewController: UIViewController {
             
             if (activePlayer == 1)
             {
-                sender.setImage(UIImage(named: "pooh_icon"), for: UIControlState())
+                sender.setImage(UIImage(named: "pooh_icon.png"), for: UIControlState())
                 activePlayer = 2
             }
             else
             {
-                sender.setImage(UIImage(named: "piglet_icon"), for: UIControlState())
+                sender.setImage(UIImage(named: "piglet_icon.png"), for: UIControlState())
                 activePlayer = 1
             }
         }
