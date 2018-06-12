@@ -14,9 +14,9 @@ class ViewController: UIViewController {
     var gameState = [0, 0, 0, 0, 0, 0, 0, 0, 0]
     var isGameActive = true
     
-    let winningCombinations = [[0, 1, 2], [3, 4, 5], [6, 7, 8],
-                               [0, 3, 6], [1, 4, 7], [2, 5, 8],
-                               [0, 4, 8], [2, 4, 6]]
+    let winningCombinations = [[0, 1, 2], [3, 4, 5], [6, 7, 8], // horizontal combinations
+                               [0, 3, 6], [1, 4, 7], [2, 5, 8], // vertical combinations
+                               [0, 4, 8], [2, 4, 6]]            // diagonal combinations
     
     @IBOutlet weak var winningMessage: UILabel!
     
@@ -41,12 +41,14 @@ class ViewController: UIViewController {
             if gameState[combination[0]] != 0 && gameState[combination[0]] == gameState[combination[1]] && gameState[combination[1]] == gameState[combination[2]]
             {
                 isGameActive = false
+                // if Pooh Wins
                 if gameState[combination[0]] == 1
                 {
                     winningMessage.backgroundColor = UIColor.red
                     winningMessage.textColor = UIColor.yellow
                     winningMessage.text = "Pooh Won!"
                 }
+                // if Piglet Wins
                 else
                 {
                     winningMessage.backgroundColor = UIColor.magenta
@@ -55,18 +57,20 @@ class ViewController: UIViewController {
                 }
                 playAgainButton.isHidden = false;
                 winningMessage.isHidden = false;
+                return
             }
         }
+        
+        
         // Handling Ties
+        
         isGameActive = false
-        for i in gameState
+        
+        if (gameState.contains(0))
         {
-            if i == 0
-            {
-                isGameActive = true
-                break
-            }
+            isGameActive = true
         }
+
         if isGameActive == false
         {
             winningMessage.backgroundColor = UIColor.black
@@ -75,6 +79,7 @@ class ViewController: UIViewController {
             winningMessage.isHidden = false
             playAgainButton.isHidden = false
         }
+ 
     }
     
     @IBOutlet weak var playAgainButton: UIButton!
@@ -102,4 +107,3 @@ class ViewController: UIViewController {
 
 
 }
-
